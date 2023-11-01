@@ -1,24 +1,75 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>激務むず障害物よけゲーム</title>
-    </head>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        body {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        #gameCanvas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #settingsMenu {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid black;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 20px; 
+            font-size: 20px; 
+            border-radius: 5px;
+        }
+    </style>
+</head>
 <body>
-<canvas id="gameCanvas" width="800" height="600"></canvas>
-<button id="startButton" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 10px 20px; font-size: 20px; border-radius: 5px;">Game Start</button>
+<h1 id="highScoreText" style="text-align: center;"></h1>
+<canvas id="gameCanvas"></canvas>
+<div id="startMenu">
+    <button id="startButton" style="position: absolute; top: 50%; left: calc(50% - 100px);">Game Start</button>
+    <button id="settingsButton" style="position: absolute; top: 50%; left: calc(50% + 100px);">Settings</button>
+</div>
+<div id="settingsMenu">
+    <button id="fullscreenButton">Go Fullscreen</button><br>
+    <button id="resetButton">Reset High Score</button><br>
+    <button id="backButton">Back to Game</button>
+</div>
 <div id="scoreHistory" style="position: absolute; top: 10px; right: 10px;"></div>
 <script>
 var canvas = document.getElementById("gameCanvas");
+var aspectRatio = 16 / 9;
+if (window.innerWidth / window.innerHeight > aspectRatio) {
+    canvas.width = window.innerHeight * aspectRatio;
+    canvas.height = window.innerHeight;
+} else {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerWidth / aspectRatio;
+}
+
 var ctx = canvas.getContext("2d");
 var startButton = document.getElementById("startButton");
+var settingsButton = document.getElementById("settingsButton");
+var fullscreenButton = document.getElementById("fullscreenButton");
+var resetButton = document.getElementById("resetButton");
+var backButton = document.getElementById("backButton");
 var scoreHistoryDiv = document.getElementById("scoreHistory");
+var highScoreText = document.getElementById("highScoreText");
 
-var player = {x: 50, y: 200, dy: 0, radius: 20, color: "blue"};
+var player = {x: 50, y: canvas.height / 2, dy: 0, radius: 20, color: "blue"};
 var gravity = 0.5;
 var obstacles = [];
 var score = 0;
 var highScore = parseInt(localStorage.getItem('highScore')) || 0;
+highScoreText.innerText = "Your High Score is " + highScore;
 var scoreHistory = [];
 
 function updatePlayer() {
@@ -44,13 +95,21 @@ function drawPlayer() {
 
 function updateObstacles() {
     if (Math.random() < 0.02) {
-        var obstacleHeight = Math.random() * canvas.height / 2;
-        var obstacleYPosition = Math.random() < 0.5 ? canvas.height - obstacleHeight : 0;
-        var obstacle = {x: canvas.width, y: obstacleYPosition, width: 20, height: obstacleHeight, color: "red"};
-        obstacles.push(obstacle);
+        var obstacleHeightTop = Math.random() * canvas.height / 3;
+        var obstacleHeightBottom = Math.random() * canvas.height / 3;
+        var obstacleYPositionTop = 0;
+        var obstacleYPositionBottom = canvas.height - obstacleHeightBottom;
+
+        var obstacleTop = {x: canvas.width, y: obstacleYPositionTop, width: 20, height: obstacleHeightTop, color: "red"};
+        var obstacleBottom = {x: canvas.width, y: obstacleYPositionBottom, width: 20, height: obstacleHeightBottom, color: "red"};
+
+        obstacles.push(obstacleTop);
+        obstacles.push(obstacleBottom);
     }
+    
     for (var i = 0; i < obstacles.length; i++) {
         obstacles[i].x--;
+        
         if (obstacles[i].x < -obstacles[i].width) {
             obstacles.splice(i, 1);
             i--;
@@ -72,9 +131,10 @@ function drawObstacles() {
 function detectCollision() {
     for (var i = 0; i < obstacles.length; i++) {
         var o = obstacles[i];
-        var dx = player.x - Math.max(o.x, Math.min(player.x, o.x + o.width));
-        var dy = player.y - Math.max(o.y, Math.min(player.y, o.y + o.height));
-        if ((dx * dx + dy * dy) < (player.radius * player.radius)) {
+        var dx = Math.max(o.x - player.x, player.x - (o.x + o.width));
+        var dy1 = Math.max(o.y - player.y, player.y - (o.y + o.height));
+        var dy2 = Math.max(player.y - o.y, o.y + o.height - player.y);
+        if ((dx * dx + dy1 * dy1) < (player.radius * player.radius) || (dx * dx + dy2 * dy2) < (player.radius * player.radius)) {
             return true;
         }
     }
@@ -115,6 +175,7 @@ function draw() {
             highScore=score;
             alert("New High Score! Your High Score is " + highScore);
             localStorage.setItem('highScore', highScore);
+            highScoreText.innerText = "Your High Score is " + highScore;
         }
 
         scoreHistoryDiv.innerHTML = "Score History:<br>" + scoreHistory.join("<br>");
@@ -126,18 +187,44 @@ function draw() {
 }
 
 startButton.addEventListener("click", function() {
-    startButton.style.display = "none";
+    startMenu.style.display = "none";
     interval = setInterval(draw, 10);
+});
+
+settingsButton.addEventListener("click", function() {
+    settingsMenu.style.display = "block";
+});
+
+backButton.addEventListener("click", function() {
+    settingsMenu.style.display = "none";
+});
+
+fullscreenButton.addEventListener("click", function() {
+    if (canvas.requestFullscreen) {
+        canvas.requestFullscreen();
+    } else if (canvas.mozRequestFullScreen) { /* Firefox */
+        canvas.mozRequestFullScreen();
+    } else if (canvas.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+        canvas.webkitRequestFullscreen();
+    } else if (canvas.msRequestFullscreen) { /* IE/Edge */
+        canvas.msRequestFullscreen();
+    }
+});
+
+resetButton.addEventListener("click", function() {
+    highScore = 0;
+    localStorage.setItem('highScore', highScore);
+    highScoreText.innerText = "Your High Score is " + highScore;
 });
 
 document.body.addEventListener("keydown", function(e) {
     if (e.keyCode == 32) {
-        player.dy = -10;
+        player.dy = -8;
     }
 });
 
 document.body.addEventListener("touchstart", function(e) {
-    player.dy = -10;
+    player.dy = -8;
 });
 </script>
 </body>
