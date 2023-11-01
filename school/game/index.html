@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>激務むず障害物よけゲーム</title>
+    </head>
+<body>
+<canvas id="gameCanvas" width="800" height="600"></canvas>
+<button id="startButton" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 10px 20px; font-size: 20px; border-radius: 5px;">Game Start</button>
+<div id="scoreHistory" style="position: absolute; top: 10px; right: 10px;"></div>
+<script>
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+var startButton = document.getElementById("startButton");
+var scoreHistoryDiv = document.getElementById("scoreHistory");
+
+var player = {x: 50, y: 200, dy: 0, radius: 20, color: "blue"};
+var gravity = 0.5;
+var obstacles = [];
+var score = 0;
+var highScore = parseInt(localStorage.getItem('highScore')) || 0;
+var scoreHistory = [];
+
+function updatePlayer() {
+    player.y += player.dy;
+    if (player.y + player.radius > canvas.height) {
+        player.y = canvas.height - player.radius;
+        player.dy = 0;
+    } else if (player.y - player.radius < 0) {
+        player.y = player.radius;
+        player.dy = 0;
+    } else {
+        player.dy += gravity;
+    }
+}
+
+function drawPlayer() {
+    ctx.beginPath();
+    ctx.arc(player.x, player.y, player.radius, 0, Math.PI*2);
+    ctx.fillStyle = player.color;
+    ctx.fill();
+    ctx.closePath();
+}
+
+function updateObstacles() {
+    if (Math.random() < 0.02) {
+        var obstacleHeight = Math.random() * canvas.height / 2;
+        var obstacleYPosition = Math.random() < 0.5 ? canvas.height - obstacleHeight : 0;
+        var obstacle = {x: canvas.width, y: obstacleYPosition, width: 20, height: obstacleHeight, color: "red"};
+        obstacles.push(obstacle);
+    }
+    for (var i = 0; i < obstacles.length; i++) {
+        obstacles[i].x--;
+        if (obstacles[i].x < -obstacles[i].width) {
+            obstacles.splice(i, 1);
+            i--;
+            score++;
+        }
+    }
+}
+
+function drawObstacles() {
+    for (var i = 0; i < obstacles.length; i++) {
+        ctx.beginPath();
+        ctx.rect(obstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height);
+        ctx.fillStyle = obstacles[i].color;
+        ctx.fill();
+        ctx.closePath();
+    }
+}
+
+function detectCollision() {
+    for (var i = 0; i < obstacles.length; i++) {
+        var o = obstacles[i];
+        var dx = player.x - Math.max(o.x, Math.min(player.x, o.x + o.width));
+        var dy = player.y - Math.max(o.y, Math.min(player.y, o.y + o.height));
+        if ((dx * dx + dy * dy) < (player.radius * player.radius)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function drawScore() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText("Score: "+score, 8, 20);
+}
+
+function drawHighScore() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText("High Score: "+highScore, canvas.width - 100, 20);
+}
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    updatePlayer();
+    drawPlayer();
+    
+    updateObstacles();
+    drawObstacles();
+    
+    drawScore();
+    
+    drawHighScore();
+
+    if (detectCollision()) {
+        alert("Game Over! Your score was " + score);
+        
+        scoreHistory.push(score);
+        
+        if(score > highScore){
+            highScore=score;
+            alert("New High Score! Your High Score is " + highScore);
+            localStorage.setItem('highScore', highScore);
+        }
+
+        scoreHistoryDiv.innerHTML = "Score History:<br>" + scoreHistory.join("<br>");
+        
+        document.location.reload();
+        
+        clearInterval(interval);
+    }
+}
+
+startButton.addEventListener("click", function() {
+    startButton.style.display = "none";
+    interval = setInterval(draw, 10);
+});
+
+document.body.addEventListener("keydown", function(e) {
+    if (e.keyCode == 32) {
+        player.dy = -10;
+    }
+});
+
+document.body.addEventListener("touchstart", function(e) {
+    player.dy = -10;
+});
+</script>
+</body>
+</html>
