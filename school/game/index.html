@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-    <meta charset="UTF-8">
-    <title>簡単なゲーム！バグ多め</title>
-    <link href="https://gamelist1990.github.io/gamelist1990/gamesite/images/logo.png" rel="icon">
-    <meta content="赤いラインに当たるなゲーム！！！" property="og:title" />
-    <meta content="スコア100を目指そう！！<br />ガチで結構ムズイw" property="og:description" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style>
         body {
@@ -52,13 +46,14 @@
 <div id="scoreHistory" style="position: absolute; top: 10px; right: 10px;"></div>
 <script>
 var canvas = document.getElementById("gameCanvas");
-var aspectRatio = 16 / 9;
-if (window.innerWidth / window.innerHeight > aspectRatio) {
+var aspectRatio = window.innerWidth / window.innerHeight;
+
+if (aspectRatio > 1) { // Landscape mode
     canvas.width = window.innerHeight * aspectRatio;
     canvas.height = window.innerHeight;
-} else {
+} else { // Portrait mode
     canvas.width = window.innerWidth;
-    canvas.height = window.innerWidth / aspectRatio;
+    canvas.height = window.innerWidth * aspectRatio;
 }
 
 var ctx = canvas.getContext("2d");
@@ -101,8 +96,8 @@ function drawPlayer() {
 
 function updateObstacles() {
     if (Math.random() < 0.02) {
-        var obstacleHeightTop = Math.random() * canvas.height / 3;
-        var obstacleHeightBottom = Math.random() * canvas.height / 3;
+        var obstacleHeightTop = Math.random() * canvas.height / 2.5; // Decreased the divisor to increase the height of the obstacles
+        var obstacleHeightBottom = Math.random() * canvas.height / 2.5; // Decreased the divisor to increase the height of the obstacles
         var obstacleYPositionTop = 0;
         var obstacleYPositionBottom = canvas.height - obstacleHeightBottom;
 
