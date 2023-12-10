@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>エネルギー効率改善アドバイザー</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>エネルギー効率改善アドバイザー</h1>
+        <div class="form-group">
+            <label for="energy-usage">現在のエネルギー使用量（kWh）:</label>
+            <input type="number" id="energy-usage" min="0">
+        </div>
+        <div class="form-group">
+            <label for="has-solar-panel">太陽光パネルを持っていますか？</label>
+            <select id="has-solar-panel" onchange="toggleSolarPanelInput()">
+                <option value="yes">はい</option>
+                <option value="no">いいえ</option>
+            </select>
+        </div>
+        <div class="form-group" id="solar-panel-group" style="display: none;">
+            <label for="solar-panel">太陽光パネルの数:</label>
+            <input type="number" id="solar-panel" min="0">
+        </div>
+        <div class="form-group">
+            <label for="peak-hour">電力使用のピーク時間:</label>
+            <input type="number" id="peak-hour" min="0" max="24">
+        </div>
+        <div class="form-group">
+            <label for="peak-usage">一番使っている時間帯の電気量（kWh）:</label>
+            <input type="number" id="peak-usage" min="0">
+        </div>
+        <button onclick="calculate()">計算</button>
+        <div class="results" id="results"></div>
+    </div>
+    <script>
+        function toggleSolarPanelInput() {
+            var hasSolarPanel = document.getElementById('has-solar-panel').value;
+            var solarPanelGroup = document.getElementById('solar-panel-group');
+            if (hasSolarPanel === "yes") {
+                solarPanelGroup.style.display = "block";
+            } else {
+                solarPanelGroup.style.display = "none";
+            }
+        }
+        function calculate() {
+            var energyUsage = document.getElementById('energy-usage').value;
+            var solarPanel = document.getElementById('has-solar-panel').value === "yes" ? document.getElementById('solar-panel').value : 0;
+            var peakHour = document.getElementById('peak-hour').value;
+            var peakUsage = document.getElementById('peak-usage').value;
+            var results = document.getElementById('results');
+            // 入力が数字であることを確認します。
+            if (isNaN(energyUsage) || isNaN(solarPanel) || isNaN(peakHour) || isNaN(peakUsage)) {
+                alert("数字のみ対応しています");
+                return;
+            }
+            // ここでエネルギー効率改善の計算を行います。
+            var efficiency = solarPanel / energyUsage * 100;
+            // 結果は、results要素に表示されます。
+            results.innerHTML = "エネルギー効率: " + efficiency.toFixed(2) + "%" + "です";
+            // 電力使用のピーク時間を特定し、その時間帯の電力使用を抑制するための提案を行います。
+            if (peakHour >= 17 && peakHour <= 21) {
+                results.innerHTML += "<br>ピーク時間（17時から21時）の電力使用を抑制するために、電化製品の使用を控える、LED照明を使用するなどの対策をお勧めします。";
+            }
+            // 太陽光パネルの有無による切り替え機能を追加します。
+            if (solarPanel == 0) {
+                results.innerHTML += "<br>太陽光パネルを持っていない場合、エネルギー効率を改善するためには、省エネ型の電化製品を使用する、電力使用のピーク時間を避けるなどの対策が有効です。";
+            }
+            // 一番使っている時間帯の電気量に基づいて提案を行います。
+            if (peakUsage > energyUsage / 2) {
+                results.innerHTML += "<br>一番使っている時間帯の電気量が全体の半分以上である場合、その時間帯の電力使用を抑制するために、電化製品の使用を控える、タイマーを設定するなどの対策をお勧めします。";
+            }
+        }
+    </script>
+</body>
+</html>
