@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>実験へようこそ！！</title>
+    </head>
+    <body>
+        <h1>実験へようこそ！！</h1>
+        <h2>実験履歴1:端末の情報を取得できるかテスト</h2>
+        <button onclick="displayInfo()">押してね！！</button>
+        <div id="info"></div>
+
+
+    </body>
+    <script src="load.js" type="text/javascript"></script>
+    <script>
+var pauseUpdate = false;
+
+async function displayInfo() {
+  if (pauseUpdate) return;
+  var infoDiv = document.getElementById('info');
+  var date = new Date();
+  let my_ip = await (await fetch("https://wtfismyip.com/json").catch()).json().catch();
+  let ip_data = await (await fetch(`https://uncors.vercel.app/?url=http://ip-api.com/json/${my_ip.YourFuckingIPAddress}`).catch()).json().catch();
+  var data = {
+    '端末の情報': navigator.userAgent,
+    '機種': navigator.platform,
+    'webメモリ': (typeof window.performance.memory != "undefined" ? Math.round(window.performance.memory.jsHeapSizeLimit / 1024 / 1024) : null) + 'MB',
+    'CPUスレッド': navigator.hardwareConcurrency,
+    'デバイスメモリ': navigator.deviceMemory,
+    'システム言語': navigator.languages.join(", "),
+    'メイン言語': navigator.language,
+    '時間': date.toLocaleDateString() + ' ' + date.toLocaleTimeString(),
+    'タイムゾーン': ip_data.timezone,
+    '時差': date.getTimezoneOffset() / 60 + ' hours'
+  };
+  infoDiv.innerHTML = Object.entries(data).map(([key, value]) => `<p>${key} - ${value}</p>`).join('');
+}
+
+</script>
+</html>
+
