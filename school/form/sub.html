@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+        overflow-x: hidden;
+        background-color: #f0f0f0;
+      }
+      #output {
+        margin-top: 20px;
+        padding: 0 10px;
+      }
+      .result {
+        margin-bottom: 10px;
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      .fastest {
+        color: green;
+        font-weight: bold;
+      }
+      #progress {
+        width: 0;
+        background: lightblue;
+        text-align: center;
+        color: white;
+        height: 20px;
+        line-height: 20px;
+      }
+      #progressContainer {
+        width: 90%;
+        background: #ddd;
+        margin: 10px auto;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center;">DNSチェック</h1>
+    <p style="text-align: center;">このページでは、指定されたDNSサーバーの応答時間をチェックします。</p>
+    <div style="text-align: center;">
+      <label for="dnsServer">DNSサーバを追加:</label>
+      <input type="text" id="dnsServer" name="dnsServer">
+      <button onclick="addServer()">追加</button>
+      <span id="error" style="color: red;"></span>
+    </div>
+    <div style="text-align: center;">
+        <label for="servers">DNSサーバを選択:</label>
+        <select id="servers">
+          <option value="8.8.8.8">8.8.8.8 (Google)</option>
+          <option value="8.8.4.4">8.8.4.4 (Google)</option>
+          <option value="1.0.0.1">1.0.0.1 (Cloudflare)</option>
+          <option value="1.1.1.1">1.1.1.1 (Cloudflare)</option>
+          <option value="4.2.2.1">4.2.2.1 (Level 3)</option>
+          <option value="4.2.2.2">4.2.2.2 (Level 3)</option>
+          <option value="4.2.2.3">4.2.2.3 (Level 3)</option>
+          <option value="4.2.2.4">4.2.2.4 (Level 3)</option>
+          <option value="4.2.2.5">4.2.2.5 (Level 3)</option>
+          <option value="4.2.2.6">4.2.2.6 (Level 3)</option>
+          <option value="24.113.32.29">24.113.32.29</option>
+          <option value="24.113.32.30">24.113.32.30</option>
+        </select>
+        <button onclick="removeServer()">削除</button>
+      </div>
+      <button onclick="clearStorage()" style="display: block; margin: 10px auto;">ストレージをクリア</button>
+      <br />
+      <button onclick="triggerDNSCheck()" style="display: block; margin: 10px auto;">DNSをチェック</button>
+      <div id="progressContainer">
+        <div id="progress">0%</div>
+      </div>
+      <div id="fastestOutput"></div>
+      <div id="output"></div>
+    <script>
+     window.onload = function() {
+        var servers = JSON.parse(localStorage.getItem('dnsServers'));
+        if (servers) {
+          var select = document.getElementById('servers');
+          servers.forEach(function(server) {
+            var option = document.createElement('option');
+            option.value = server;
+            option.text = server;
+            select.add(option);
+          });
+        }
+      };
+      function addServer() {
+        var server = document.getElementById('dnsServer').value;
+        var errorElement = document.getElementById('error');
+        errorElement.textContent = ''; // エラーメッセージをクリア
+
+        // DNSサーバーの形式チェック
+        var regex = /^(\d{1,3}\.){3}\d{1,3}$/;
+        if (!regex.test(server)) {
+          errorElement.textContent = 'DNSには有り得ない形式です';
+          return;
+        }
+
+        // DNSサーバーの重複チェック
+        var servers = JSON.parse(localStorage.getItem('dnsServers')) || [];
+        if (servers.includes(server)) {
+          errorElement.textContent = '同じDNSは追加できません';
+          return;
+        }
+
+        // DNSサーバーの追加
+        var select = document.getElementById('servers');
+        var option = document.createElement('option');
+        option.value = server;
+        option.text = server;
+        select.add(option);
+        servers.push(server);
+        localStorage.setItem('dnsServers', JSON.stringify(servers));
+        document.getElementById('dnsServer').value = '';
+      }
+      function removeServer() {
+        var select = document.getElementById('servers');
+        var server = select.options[select.selectedIndex].value;
+        if (server !== '8.8.8.8' && server !== '8.8.4.4' && server !== '1.0.0.1' && server !== '1.1.1.1' && server !== '4.2.2.1' && server !== '4.2.2.2' && server !== '4.2.2.3' && server !== '4.2.2.4' && server !== '4.2.2.5' && server !== '4.2.2.6' && server !== '24.113.32.29' && server !== '24.113.32.30') {
+          select.remove(select.selectedIndex);
+          var servers = JSON.parse(localStorage.getItem('dnsServers'));
+          var index = servers.indexOf(server);
+          if (index > -1) {
+            servers.splice(index, 1);
+          }
+          localStorage.setItem('dnsServers', JSON.stringify(servers));
+          alert('削除しました: ' + server);
+        }
+      }
+      function clearStorage() {
+        localStorage.clear();
+        alert('ストレージをクリアしました');
+      }
+      
+      async function triggerDNSCheck() {
+        var dnsServers = Array.from(document.getElementById('servers').options).map(option => option.value);
+        var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        var targetUrl = 'https://script.google.com/macros/s/AKfycbx7x1GyfOJjRHf7SxZP2aZcooapcRslkjvGd2WnN3wFu-cZPvF1heSiknch4iU9IYhdiA/exec';
+        var outputDiv = document.getElementById('output');
+        var fastestOutputDiv = document.getElementById('fastestOutput');
+        var progressDiv = document.getElementById('progress');
+        outputDiv.innerHTML = '';
+        fastestOutputDiv.innerHTML = '';
+        progressDiv.style.width = '0';
+        progressDiv.textContent = '0%';
+        var results = [];
+        for (var i = 0; i < dnsServers.length; i++) {
+          var response = await fetch(proxyUrl + targetUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ action: '1', server: dnsServers[i] }) // DNSチェックを実行するためのアクションとサーバーを指定
+          });
+          var result = await response.json();
+          results.push(result);
+          var progress = ((i + 1) / dnsServers.length * 100);
+          progressDiv.style.width = progress + '%';
+          progressDiv.textContent = Math.round(progress) + '%';
+        }
+        var fastestServer = results.reduce((prev, current) => (prev.time < current.time) ? prev : current);
+        results.forEach(function(result) {
+          var resultDiv = document.createElement('div');
+          resultDiv.classList.add('result');
+          if (result.server === fastestServer.server) {
+            resultDiv.classList.add('fastest');
+            resultDiv.innerHTML = '<h2>調べたDNSの中でpingが特に低いのはこれです: Server: ' + result.server + 'はping:' + result.time + 'msです</h2>';
+            fastestOutputDiv.appendChild(resultDiv);
+          } else {
+            resultDiv.textContent = 'Server: ' + result.server + 'はping:' + result.time + 'msです';
+            outputDiv.appendChild(resultDiv);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
