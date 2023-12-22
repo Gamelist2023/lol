@@ -1,0 +1,105 @@
+html {
+	background-color: #333;
+}
+body {
+	background-color: #333;
+}
+.main-container {
+	background-color: #ffffff !important;
+}
+.title_header {
+	background-color: #333;
+	color: #ffffff;
+}
+.title {
+	text-align: right;
+	margin-top: 35px;
+}
+form {
+	text-align: left;
+}
+.form-group label {
+	font-weight: bold;
+}
+.description {
+	font-size: 1.2em;
+}
+.examination {
+	margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px;
+}
+.examination h3 {
+	text-align: center;
+	color: #3063BC;
+	border-bottom: solid 1px #3063BC;
+	width: 60%;
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 20px;
+}
+.examination p {
+	margin-top: 8px;
+}
+.steps{
+	background-image: url("../images/eat/step_img.png");
+	background-repeat: no-repeat;
+	width: 669px;
+	max-width: 100%;
+	height: 27px;
+	margin-bottom: 15px;
+}
+.steps.step01 {
+	background-position: 0 0;
+	
+}
+.steps.step02 {
+	background-position: 0 -40px;
+}
+.steps.step03 {
+	background-position: 0 -79px;
+}
+.steps.step04 {
+	background-position: 0 bottom;
+}
+
+.form-horizontal {
+	z-index: 1;
+	position: relative;
+}
+
+.overview {
+	margin: 50px 0;
+}
+.overview_box {
+	border: solid 3px #0099CB;
+	margin: 40px;
+	padding: 20px 50px;
+	border-radius: 35px;
+}
+.yajirusi {
+	background-image: url("../images/eat/yajirusi.jpg");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	width: 669px;
+	max-width: 100%;
+	height: 165px;
+	padding: 50px;
+}
+p {
+	font-size: 15px;
+}
+dl {
+	font-size: 15px;
+}
+dt {
+	float: left;
+}
+dd {
+	margin-left: 80px;
+}
+h3, .h3{
+    font-size:1.4rem;
+}

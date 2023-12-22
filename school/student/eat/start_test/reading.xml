@@ -1,0 +1,115 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+  <success>true</success>
+  <err_msg_no/>
+  <err_msg/>
+  <data>
+    <book no="4781" limitTime="450" type="reading">
+      <questions>
+        <combinationQuestion no="10000" type="vocabulary">
+          <direction><![CDATA[<p style="text-align:center;"><b>---------- Part D ----------</b></p>]]></direction>
+          <question no="230008998" point="" skillType="4" sectionNo="1" type="multipleChoice">
+            <title><![CDATA[Q & A Multiple Choice]]></title>
+            <direction/>
+            <questionText><![CDATA[I'm very <u>grateful</u> for your help with my work.]]></questionText>
+            <description/>
+            <answers>
+              <answer>3</answer>
+            </answers>
+            <choices shuffleChoices="true">
+              <choice no="1"><![CDATA[pleasant]]></choice>
+              <choice no="2"><![CDATA[romantic]]></choice>
+              <choice no="3"><![CDATA[appreciative]]></choice>
+              <choice no="4"><![CDATA[worrying]]></choice>
+            </choices>
+          </question>
+          <question no="230008999" point="" skillType="4" sectionNo="1" type="multipleChoice">
+            <title><![CDATA[Q & A Multiple Choice]]></title>
+            <direction/>
+            <questionText><![CDATA[The language teacher <u>memorized</u> all the new words in this lesson.]]></questionText>
+            <description/>
+            <answers>
+              <answer>2</answer>
+            </answers>
+            <choices shuffleChoices="true">
+              <choice no="1"><![CDATA[meant to avoid]]></choice>
+              <choice no="2"><![CDATA[learned by heart]]></choice>
+              <choice no="3"><![CDATA[studied alone]]></choice>
+              <choice no="4"><![CDATA[wrote out]]></choice>
+            </choices>
+          </question>
+        </combinationQuestion>
+        <combinationQuestion no="11140" type="readingComprehension">
+          <title/>
+          <direction><![CDATA[<p style="text-align:center;"><b>---------- Part E ----------</b></p>]]></direction>
+          <passage><![CDATA[One important, specialized branch of aerodynamics is Supersonics--the study of the phenomena that arise when the velocity of a solid body exceeds the speed of sound in the medium in which it is traveling (usually air). Unlike the speed of light, the speed of sound in the atmosphere is not constant, rather it varies with factors such as humidity, temperature, and pressure. Because the speed of sound, being thus variable, is a critical factor in aerodynamic equations, it is represented by a number called the Mach number, named after the Austrian physicist and philosopher Ernst Mach, a pioneer in the study of ballistics. This number is simply the speed of the projectile (or aircraft) with reference to the ambient atmosphere, divided by the speed of sound in the same medium and under the same conditions. In other words, at sea level, under standard conditions of humidity and temperature, a speed of about 1220 km/hr (about 760 mph) would represent a Mach number of one, that is, M-1. However, that same speed in the stratosphere would correspond to a Mach number of M-1.16, because of differences in density, pressure, and temperature. The advantage of designating speeds by Mach number, rather than by kilometers or miles per hour, is that a more accurate representation of the actual conditions encountered in flight can then be obtained.<br/>Photographs of artillery projectiles in flight disclose the following characteristics: at subsonic speeds, that is, below M-0.85, the only atmospheric disturbance is a turbulence in the wake of the projectile; in the transonic range, from M-0.85 to M-1.3, shock waves begin to build up as speed increases; in the lower part of this speed range shock waves arise from any abrupt breaks in the smooth contour of the projectile; as the speed passes M-1, shock waves arise from the nose and tail and are propagated from the projectile in the form of a cone, which has an apex angle inversely proportional to the speed of the projectile. This means that, at M-1, the nose wave is essentially a flat plane; at M-1.4 the angle of the cone is about 90｡; and at M-2.48, the shock wave preceding the projectile has a conical angle of slightly less than 50｡. ]]></passage>
+          <en_script_sentence/>
+          <question no="230009294" point="" skillType="1" sectionNo="2" type="multipleChoice">
+            <title><![CDATA[Q & A Multiple Choice]]></title>
+            <direction/>
+            <questionText><![CDATA[What does the passage mainly discuss?]]></questionText>
+            <description/>
+            <answers>
+              <answer>2</answer>
+            </answers>
+            <choices shuffleChoices="true">
+              <choice no="1"><![CDATA[The life of Ernst Mach]]></choice>
+              <choice no="2"><![CDATA[Details of one specialized branch of aerodynamics]]></choice>
+              <choice no="3"><![CDATA[Ways of calculating the speed of sound]]></choice>
+              <choice no="4"><![CDATA[The behavior of supersonic projectiles]]></choice>
+            </choices>
+          </question>
+          <question no="230009296" point="" skillType="1" sectionNo="2" type="multipleChoice">
+            <title><![CDATA[Q & A Multiple Choice]]></title>
+            <direction/>
+            <questionText><![CDATA[All of the following affect the speed of sound in the atmosphere EXCEPT]]></questionText>
+            <description/>
+            <answers>
+              <answer>4</answer>
+            </answers>
+            <choices shuffleChoices="true">
+              <choice no="1"><![CDATA[humidity]]></choice>
+              <choice no="2"><![CDATA[temperature]]></choice>
+              <choice no="3"><![CDATA[pressure]]></choice>
+              <choice no="4"><![CDATA[precipitation]]></choice>
+            </choices>
+          </question>
+          <question no="230009302" point="" skillType="1" sectionNo="2" type="multipleChoice">
+            <title><![CDATA[Q & A Multiple Choice]]></title>
+            <direction/>
+            <questionText><![CDATA[What was the preceding paragraph probably about?]]></questionText>
+            <description/>
+            <answers>
+              <answer>4</answer>
+            </answers>
+            <choices shuffleChoices="true">
+              <choice no="1"><![CDATA[The other specialized branches of aerodynamics]]></choice>
+              <choice no="2"><![CDATA[The study of the atmosphere]]></choice>
+              <choice no="3"><![CDATA[The history of flight]]></choice>
+              <choice no="4"><![CDATA[The science of aerodynamics]]></choice>
+            </choices>
+          </question>
+          <question no="230009308" point="" skillType="1" sectionNo="2" type="multipleChoice">
+            <title><![CDATA[Q & A Multiple Choice]]></title>
+            <direction/>
+            <questionText><![CDATA[It can be inferred from the second paragraph that]]></questionText>
+            <description/>
+            <answers>
+              <answer>1</answer>
+            </answers>
+            <choices shuffleChoices="true">
+              <choice no="1"><![CDATA[studies in Supersonics were done with projectiles]]></choice>
+              <choice no="2"><![CDATA[atmospheric disturbances are difficult to photograph]]></choice>
+              <choice no="3"><![CDATA[the shape of the cone depends upon the shape of the projectile]]></choice>
+              <choice no="4"><![CDATA[even the fastest projectiles cannot exceed Mach 2]]></choice>
+            </choices>
+          </question>
+        </combinationQuestion>
+        <combinationQuestion type="end">
+          <direction><![CDATA[<p style="text-align:center;font-size:1.5em;">This is the end of the reading section of the test.</p><img src="stop-sample.png" style="display: block;margin: 0 auto;">]]></direction>
+        </combinationQuestion>
+      </questions>
+    </book>
+  </data>
+</result>

@@ -1,0 +1,400 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+	<success>true</success>
+	<err_msg_no/>
+	<err_msg/>
+	<data>
+		<book no="5118">
+			<direction><![CDATA[「Start」ボタンをクリックして試験を開始してください。]]></direction>
+      
+			<questions>
+				<combinationQuestion no="12314" type="listeningComprehension">
+					<direction><![CDATA[<p style="text-align:center;"><b>---------- Part A ----------</b></p>]]></direction>
+					<sound>
+						<![CDATA[audio/eatsample01.mp3]]>
+					</sound>
+					<question no="230016312" point="" skillType="2" type="multipleChoice">
+						<title>
+							<![CDATA[Q & A Multiple Choice]]>
+						</title>
+						<direction/>
+						<questionText>
+							<![CDATA[Choose the best answer.]]>
+						</questionText>
+						<description/>
+						<answers>
+							<answer>2</answer>
+						</answers>
+						<!-- 選択肢 -->
+						
+						<choices shuffleChoices="true">
+							<choice no="1">
+								<![CDATA[He often drinks coffee.]]>
+							</choice>
+							<choice no="2">
+								<![CDATA[He strongly dislikes coffee.]]>
+							</choice>
+							<choice no="3">
+								<![CDATA[He sells coffee.]]>
+							</choice>
+							<choice no="4">
+								<![CDATA[He never drinks coffee.]]>
+							</choice>
+						</choices>
+					</question>
+				</combinationQuestion>
+				<combinationQuestion no="12315" type="listeningComprehension">
+					<direction><![CDATA[<p style="text-align:center;"><b>---------- Part A ----------</b></p>]]></direction>
+					<sound>
+						<![CDATA[audio/eatsample02.mp3]]>
+					</sound>
+					<question no="230016314" point="" skillType="2" type="multipleChoice">
+						<title>
+							<![CDATA[Q & A Multiple Choice]]>
+						</title>
+						<direction/>
+						<questionText>
+							<![CDATA[Choose the best answer.]]>
+						</questionText>
+						<description/>
+						<answers>
+							<answer>3</answer>
+						</answers>
+						<!-- 選択肢 -->
+						
+						<choices shuffleChoices="true">
+							<choice no="1">
+								<![CDATA[You can drive the car.]]>
+							</choice>
+							<choice no="2">
+								<![CDATA[We don’t want to sell the car.]]>
+							</choice>
+							<choice no="3">
+								<![CDATA[The car will be repaired.]]>
+							</choice>
+							<choice no="4">
+								<![CDATA[The car has already been bought.]]>
+							</choice>
+						</choices>
+					</question>
+				</combinationQuestion>
+				<combinationQuestion no="12316" type="listeningComprehension">
+					<direction><![CDATA[<p style="text-align:center;"><b>---------- Part B ----------</b></p>]]></direction>
+					<sound>
+						<![CDATA[audio/eatsample03.mp3]]>
+					</sound>
+					<question no="230016316" point="" skillType="2" type="multipleChoice">
+						<title>
+							<![CDATA[Q & A Multiple Choice]]>
+						</title>
+						<direction/>
+						<questionText>
+							<![CDATA[Choose the best answer.]]>
+						</questionText>
+						<description/>
+						<answers>
+							<answer>3</answer>
+						</answers>
+						<!-- 選択肢 -->
+						
+						<choices shuffleChoices="true">
+							<choice no="1">
+								<![CDATA[When the woman got engaged.]]>
+							</choice>
+							<choice no="2">
+								<![CDATA[Why the woman is happy.]]>
+							</choice>
+							<choice no="3">
+								<![CDATA[The date of the wedding.]]>
+							</choice>
+							<choice no="4">
+								<![CDATA[If the woman will marry him.]]>
+							</choice>
+						</choices>
+					</question>
+				</combinationQuestion>
+				<combinationQuestion no="12317" type="listeningComprehension">
+					<direction><![CDATA[<p style="text-align:center;"><b>---------- Part B ----------</b></p>]]></direction>
+					<sound>
+						<![CDATA[audio/eatsample04.mp3]]>
+					</sound>
+					<question no="230016318" point="" skillType="2" type="multipleChoice">
+						<title>
+							<![CDATA[Q & A Multiple Choice]]>
+						</title>
+						<direction/>
+						<questionText>
+							<![CDATA[Choose the best answer.]]>
+						</questionText>
+						<description/>
+						<answers>
+							<answer>3</answer>
+						</answers>
+						<!-- 選択肢 -->
+						
+						<choices shuffleChoices="true">
+							<choice no="1">
+								<![CDATA[She does not know how much the house cost.]]>
+							</choice>
+							<choice no="2">
+								<![CDATA[She paid more than she should have.]]>
+							</choice>
+							<choice no="3">
+								<![CDATA[She does not want to answer the man's question.　]]>
+							</choice>
+							<choice no="4">
+								<![CDATA[She would like the man to repeat his question.]]>
+							</choice>
+						</choices>
+					</question>
+				</combinationQuestion>
+				<combinationQuestion no="12321" type="listeningComprehension">
+					<direction><![CDATA[<p style="text-align:center;"><b>---------- Part C ----------</b></p>]]></direction>
+					<sound>
+						<![CDATA[audio/eatsample05.mp3]]>
+					</sound>
+					<question no="230016320" point="" skillType="2" type="multipleChoice">
+						<title>
+							<![CDATA[Q & A Multiple Choice]]>
+						</title>
+						<direction/>
+						<questionText>
+							<![CDATA[Choose the best answer.]]>
+						</questionText>
+						<description/>
+						<answers>
+							<answer>1</answer>
+						</answers>
+						<!-- 選択肢 -->
+						
+						<choices shuffleChoices="true">
+							<choice no="1">
+								<![CDATA[In an office building.]]>
+							</choice>
+							<choice no="2">
+								<![CDATA[At a shopping mall.]]>
+							</choice>
+							<choice no="3">
+								<![CDATA[In high school.]]>
+							</choice>
+							<choice no="4">
+								<![CDATA[At an airport.]]>
+							</choice>
+						</choices>
+					</question>
+					<question no="230016322" point="" skillType="2" type="multipleChoice">
+						<title>
+							<![CDATA[Q & A Multiple Choice]]>
+						</title>
+						<direction/>
+						<questionText>
+							<![CDATA[Choose the best answer.]]>
+						</questionText>
+						<description/>
+						<answers>
+							<answer>2</answer>
+						</answers>
+						<!-- 選択肢 -->
+						
+						<choices shuffleChoices="true">
+							<choice no="1">
+								<![CDATA[All morning.]]>
+							</choice>
+							<choice no="2">
+								<![CDATA[About an hour.]]>
+							</choice>
+							<choice no="3">
+								<![CDATA[Just a few minutes.]]>
+							</choice>
+							<choice no="4">
+								<![CDATA[Almost an hour and a half.]]>
+							</choice>
+						</choices>
+					</question>
+					<question no="230016324" point="" skillType="2" type="multipleChoice">
+						<title>
+							<![CDATA[Q & A Multiple Choice]]>
+						</title>
+						<direction/>
+						<questionText>
+							<![CDATA[Choose the best answer.]]>
+						</questionText>
+						<description/>
+						<answers>
+							<answer>3</answer>
+						</answers>
+						<!-- 選択肢 -->
+						
+						<choices shuffleChoices="true">
+							<choice no="1">
+								<![CDATA[The man’s boss.]]>
+							</choice>
+							<choice no="2">
+								<![CDATA[A cafeteria worker.]]>
+							</choice>
+							<choice no="3">
+								<![CDATA[A salesman from Specialty Motors.]]>
+							</choice>
+							<choice no="4">
+								<![CDATA[The president of Specialty Motors.]]>
+							</choice>
+						</choices>
+					</question>
+					<question no="230016326" point="" skillType="2" type="multipleChoice">
+						<title>
+							<![CDATA[Q & A Multiple Choice]]>
+						</title>
+						<direction/>
+						<questionText>
+							<![CDATA[Choose the best answer.]]>
+						</questionText>
+						<description/>
+						<answers>
+							<answer>1</answer>
+						</answers>
+						<!-- 選択肢 -->
+						
+						<choices shuffleChoices="true">
+							<choice no="1">
+								<![CDATA[They talk for a long time about unimportant things.]]>
+							</choice>
+							<choice no="2">
+								<![CDATA[They tend to call right at lunch time.]]>
+							</choice>
+							<choice no="3">
+								<![CDATA[They are often late for meetings.]]>
+							</choice>
+							<choice no="4">
+								<![CDATA[They think they are important.]]>
+							</choice>
+						</choices>
+					</question>
+				</combinationQuestion>
+				<combinationQuestion no="12322" type="listeningComprehension">
+					<direction><![CDATA[<p style="text-align:center;"><b>---------- Part C ----------</b></p>]]></direction>
+					<sound>
+						<![CDATA[audio/eatsample06.mp3]]>
+					</sound>
+					<question no="230016328" point="" skillType="2" type="multipleChoice">
+						<title>
+							<![CDATA[Q & A Multiple Choice]]>
+						</title>
+						<direction/>
+						<questionText>
+							<![CDATA[Choose the best answer.]]>
+						</questionText>
+						<description/>
+						<answers>
+							<answer>2</answer>
+						</answers>
+						<!-- 選択肢 -->
+						
+						<choices shuffleChoices="true">
+							<choice no="1">
+								<![CDATA[The speaker had to stay in school.]]>
+							</choice>
+							<choice no="2">
+								<![CDATA[The family’s truck needed to be repaired.]]>
+							</choice>
+							<choice no="3">
+								<![CDATA[The weather was too severe for them to leave.]]>
+							</choice>
+							<choice no="4">
+								<![CDATA[The speaker’s father was working there on the farm.]]>
+							</choice>
+						</choices>
+					</question>
+					<question no="230016330" point="" skillType="2" type="multipleChoice">
+						<title>
+							<![CDATA[Q & A Multiple Choice]]>
+						</title>
+						<direction/>
+						<questionText>
+							<![CDATA[Choose the best answer.]]>
+						</questionText>
+						<description/>
+						<answers>
+							<answer>1</answer>
+						</answers>
+						<!-- 選択肢 -->
+						
+						<choices shuffleChoices="true">
+							<choice no="1">
+								<![CDATA[She had destroyed it.]]>
+							</choice>
+							<choice no="2">
+								<![CDATA[She had packed a lunch in it.]]>
+							</choice>
+							<choice no="3">
+								<![CDATA[She had kept it for the speaker.]]>
+							</choice>
+							<choice no="4">
+								<![CDATA[She had cut eye-holes in it for a mask.]]>
+							</choice>
+						</choices>
+					</question>
+					<question no="230016332" point="" skillType="2" type="multipleChoice">
+						<title>
+							<![CDATA[Q & A Multiple Choice]]>
+						</title>
+						<direction/>
+						<questionText>
+							<![CDATA[Choose the best answer.]]>
+						</questionText>
+						<description/>
+						<answers>
+							<answer>2</answer>
+						</answers>
+						<!-- 選択肢 -->
+						
+						<choices shuffleChoices="true">
+							<choice no="1">
+								<![CDATA[This was her hobby.]]>
+							</choice>
+							<choice no="2">
+								<![CDATA[They were for a school play.]]>
+							</choice>
+							<choice no="3">
+								<![CDATA[They were for a class art project.]]>
+							</choice>
+							<choice no="4">
+								<![CDATA[She could sell them to make a little extra money.]]>
+							</choice>
+						</choices>
+					</question>
+					<question no="230016334" point="" skillType="2" type="multipleChoice">
+						<title>
+							<![CDATA[Q & A Multiple Choice]]>
+						</title>
+						<direction/>
+						<questionText>
+							<![CDATA[Choose the best answer.]]>
+						</questionText>
+						<description/>
+						<answers>
+							<answer>4</answer>
+						</answers>
+						<!-- 選択肢 -->
+						
+						<choices shuffleChoices="true">
+							<choice no="1">
+								<![CDATA[Sculpting]]>
+							</choice>
+							<choice no="2">
+								<![CDATA[Teaching]]>
+							</choice>
+							<choice no="3">
+								<![CDATA[Farming]]>
+							</choice>
+							<choice no="4">
+								<![CDATA[Acting]]>
+							</choice>
+						</choices>
+					</question>
+					<end><![CDATA[<p style="text-align:center;font-size:1.5em;">This is the end of the listening section of the test.</p><img src="stop-sample.png" style="display: block;margin: 0 auto;">]]></end>
+				</combinationQuestion>
+			</questions>
+		</book>
+	</data>
+</result>
